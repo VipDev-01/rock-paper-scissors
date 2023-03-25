@@ -11,6 +11,15 @@ let computerScore = 0;
 //////////////////////////////////////////////// GETTING PLAYER AND COMPUTER SELECTIONS ////////////////////////////////////////////
 //////////////////////////////////////////////// ////////////////////////////////////// ////////////////////////////////////////////
 
+function playround(player, computer) {
+
+    let playerchoice = player()
+    let computerchoice = computer()
+
+    winner = getWinner(playerchoice, computerchoice)
+}
+
+
 function getPlayerSelection() {
     let selection = ''
     do {
@@ -43,8 +52,7 @@ function getComputerChoice() {
 function getWinner(playerchoice, computerchoice) {
     if (playerchoice == computerchoice) {
         console.log('Tie!: ' + 'Player Choice: ' + playerchoice + '   ' + 'Computer Choice: ' + computerchoice)
-        alert('Its a Tie! Round will be played again!')
-        playround(getPlayerSelection, getComputerChoice);
+        return 'tie'
 
     } else if (playerchoice == 'rock') {
         if (computerchoice == 'paper') {
@@ -74,14 +82,7 @@ function getWinner(playerchoice, computerchoice) {
 
 }
 
-function playround(player, computer) {
 
-    let playerchoice = player()
-    let computerchoice = computer()
-
-    winner = getWinner(playerchoice, computerchoice)
-
-}
 
 function getRounds() {
     const InpRnd = document.getElementById("rounds");
@@ -103,6 +104,9 @@ function game() {
 
         playround(getPlayerSelection, getComputerChoice)
 
+        if (winner== 'tie') {
+            x--
+        }
         if (winner == 'computer') {
             computerScore++  
         }
@@ -113,10 +117,14 @@ function game() {
 
     if (playerScore > computerScore) {
         console.log ('Player Wins!')
-    } else (console.log('Computer Wins!'))
+    } else if (computerScore > playerScore) {
+        console.log('Computer Wins!')
+    } 
+        para.textContent = 'SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore
+    }
 
-    para.textContent = 'SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore
-}
+
+
 
 
 
