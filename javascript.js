@@ -1,3 +1,16 @@
+//////////////////////////////////////////////// ////////////////////////////////////// ////////////////////////////////////////////
+//////////////////////////////////////////////// GLOBAL VARIABLES //////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////// ////////////////////////////////////// ////////////////////////////////////////////
+
+let para = document.querySelector('.winner');
+let winner = '';
+let playerScore = 0;
+let computerScore = 0;
+
+//////////////////////////////////////////////// ////////////////////////////////////// ////////////////////////////////////////////
+//////////////////////////////////////////////// GETTING PLAYER AND COMPUTER SELECTIONS ////////////////////////////////////////////
+//////////////////////////////////////////////// ////////////////////////////////////// ////////////////////////////////////////////
+
 function getPlayerSelection() {
     let selection = ''
     do {
@@ -31,44 +44,39 @@ function playround(player, computer) {
     let playerchoice = player()
     let computerchoice = computer()
 
-    winner(playerchoice, computerchoice)
+    winner = getWinner(playerchoice, computerchoice)
 
 }
 
-function winner(playerchoice, computerchoice) {
+function getWinner(playerchoice, computerchoice) {
     if (playerchoice == computerchoice) {
         console.log('Tie!: ' + 'Player Choice: ' + playerchoice + '   ' + 'Computer Choice: ' + computerchoice)
+        alert('Its a Tie! Round will be played again!')
         playround(getPlayerSelection, getComputerChoice);
 
     } else if (playerchoice == 'rock') {
         if (computerchoice == 'paper') {
             console.log('Computer Won!: ' + 'Player Choice: ' + playerchoice + '   ' + 'Computer Choice: ' + computerchoice)
-            computerWon = true;
-            playerWon = false;
+            return 'computer'
         } else {
             console.log('Player Won!: ' + 'Player Choice: ' + playerchoice + '   ' + 'Computer Choice: ' + computerchoice)
-            playerWon = true;
-            computerWon = false;
+            return 'player'
         }
     } else if (playerchoice == 'scissors') {
         if (computerchoice == 'rock') {
             console.log('Computer Won!: ' + 'Player Choice: ' + playerchoice + '   ' + 'Computer Choice: ' + computerchoice)
-            computerWon = true;
-            playerWon = false;
+            return 'computer'
         } else {
             console.log('Player Won!: ' + 'Player Choice: ' + playerchoice + '   ' + 'Computer Choice: ' + computerchoice)
-            playerWon = true;
-            computerWon = false;
+            return 'player'
         }
     } else if (playerchoice == 'paper') {
         if (computerchoice == 'scissors') {
             console.log('Computer Won!: ' + 'Player Choice: ' + playerchoice + '   ' + 'Computer Choice: ' + computerchoice)
-            computerWon = true;
-            playerWon = false;
+            return 'computer'
         } else {
             console.log('Player Won!: ' + 'Player Choice: ' + playerchoice + '   ' + 'Computer Choice: ' + computerchoice)
-            playerWon = true;
-            computerWon = false;
+            return 'player'
         }
     }
 
@@ -80,15 +88,15 @@ function getRounds() {
     return r
   }
 
-  let para = document.querySelector('.winner');
 
-let playerScore = 0;
-let computerScore = 0;
-let computerWon = false;
-let playerWon = false;
+function reset() {
+    playerScore = 0;
+    computerScore = 0;
+    para.textContent = 'SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore
+}
 
 function game() {
-    //reset()
+    reset()
     let rounds = getRounds();
     for (let x = 0; x < rounds; x++) {
         computerWon = false
@@ -96,10 +104,10 @@ function game() {
 
         playround(getPlayerSelection, getComputerChoice)
 
-        if (computerWon) {
+        if (winner == 'computer') {
             computerScore++  
         }
-        if (playerWon) {
+        if (winner == 'player') {
             playerScore++
         }
         }
@@ -111,19 +119,6 @@ function game() {
     // let message = 'SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore'
     para.textContent = 'SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore
 }
-
-
-function reset() {
-    playerScore = 0;
-    computerScore = 0;
-    para.textContent = 'SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore
-}
-
-
-
-// console.log('SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore)
-
-
 
 
 
