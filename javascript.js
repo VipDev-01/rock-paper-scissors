@@ -39,14 +39,6 @@ function getComputerChoice() {
 
 }
 
-function playround(player, computer) {
-
-    let playerchoice = player()
-    let computerchoice = computer()
-
-    winner = getWinner(playerchoice, computerchoice)
-
-}
 
 function getWinner(playerchoice, computerchoice) {
     if (playerchoice == computerchoice) {
@@ -82,6 +74,15 @@ function getWinner(playerchoice, computerchoice) {
 
 }
 
+function playround(player, computer) {
+
+    let playerchoice = player()
+    let computerchoice = computer()
+
+    winner = getWinner(playerchoice, computerchoice)
+
+}
+
 function getRounds() {
     const InpRnd = document.getElementById("rounds");
     const r = InpRnd.value;
@@ -99,8 +100,6 @@ function game() {
     reset()
     let rounds = getRounds();
     for (let x = 0; x < rounds; x++) {
-        computerWon = false
-        playerWon = false
 
         playround(getPlayerSelection, getComputerChoice)
 
@@ -116,7 +115,6 @@ function game() {
         console.log ('Player Wins!')
     } else (console.log('Computer Wins!'))
 
-    // let message = 'SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore'
     para.textContent = 'SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore
 }
 
