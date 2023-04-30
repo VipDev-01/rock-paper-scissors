@@ -131,13 +131,11 @@ function game() {
             playerScore++
         }
         }
+    
+    playerScore > computerScore ? console.log('Player Wins!') : console.log('Computer Wins!')
 
-    if (playerScore > computerScore) {
-        console.log ('Player Wins!')
-    } else if (computerScore > playerScore) {
-        console.log('Computer Wins!')
-    } 
-        para.textContent = 'SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore
+    para.textContent = 'SCORE: Player: ' + playerScore + ' ' + 'Computer: ' + ' ' + computerScore
+    
     }
 
 
